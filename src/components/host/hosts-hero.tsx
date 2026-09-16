@@ -42,7 +42,7 @@ export function HostsHero() {
 
       <div className="container relative text-center text-white">
         <p className="eyebrow-pill eyebrow-pill--on-dark mx-auto w-fit">أصوات وعي</p>
-        <h1 className="mx-auto mt-6 max-w-3xl text-4xl font-black leading-[1.1] tracking-[-.03em] sm:text-6xl md:text-7xl">
+        <h1 className="mx-auto mt-6 max-w-3xl text-3xl font-black leading-[1.25] tracking-[-.03em] sm:text-5xl md:text-6xl">
           ثلاثة أصوات، حوار واحد
         </h1>
         <p className="mx-auto mt-6 max-w-xl text-base leading-8 text-[var(--on-brand-soft)] sm:text-lg">

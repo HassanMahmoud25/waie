@@ -1,10 +1,13 @@
 import type { Series } from "@/types/series";
 
 /**
- * The 5 real, named playlists on the Waie YouTube channel at import time.
+ * The 5 real, named playlists on the Waie YouTube channel at import time,
+ * plus a 6th series added later ("الموسم الأول") sourced from a playlist
+ * on a different channel entirely -- see the comment on that entry below
+ * and the corresponding block in data/episodes.ts.
  * The channel also has a generic "بودكاست وعي" catch-all playlist (76
  * videos) that is not a distinct series -- it is simply the whole show's
- * feed, so episodes that aren't in one of the 5 series below intentionally
+ * feed, so episodes that aren't in one of the named series below intentionally
  * have no series (see data/episodes.ts) rather than being force-fit here.
  */
 export const series: Series[] = [
@@ -56,6 +59,27 @@ export const series: Series[] = [
     coverImage: "/series/commitment.png",
     coverImageMobile: "/series/commitment-mobile.png",
     topicId: "topic-commitment",
+    status: "PUBLISHED",
+  },
+  /**
+   * Sourced from the "وعي" playlist on host Hazem El Seddiq's own YouTube
+   * channel (https://www.youtube.com/playlist?list=PLcaLjDlQePQU3dpVNUzTSQQapGgtxPtts),
+   * not the main @Waie channel -- these are the show's original 22 episodes
+   * from before it had its own channel. `title` and `description` are the
+   * real playlist title/description as read from YouTube (the playlist has
+   * no description set, hence `""`). `coverImage` is the show's wordmark
+   * (editor-supplied, not from YouTube) -- square source, so used as-is for
+   * both desktop and mobile (`coverImageMobile` falls back to it). `topicId`
+   * is `null`: never inferred from a YouTube playlist, only ever set by an
+   * editor (see types/series.ts).
+   */
+  {
+    id: "series-season-one",
+    slug: "season-one",
+    title: "وعي",
+    description: "",
+    coverImage: "/series/season-one.png",
+    topicId: null,
     status: "PUBLISHED",
   },
 ];

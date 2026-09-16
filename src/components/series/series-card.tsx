@@ -46,7 +46,7 @@ export function SeriesCard({
 
       <div className="relative flex h-full flex-col justify-end gap-2.5 p-5 text-white sm:gap-3 sm:p-8">
         <p className="eyebrow-pill eyebrow-pill--on-dark w-fit text-[.68rem]">{series.episodeCount} حلقة</p>
-        <h2 className="text-2xl font-black tracking-[-.03em] text-balance sm:text-3xl md:text-4xl">
+        <h2 className="text-xl font-black leading-[1.25] tracking-[-.02em] text-balance sm:text-2xl md:text-3xl">
           {series.title}
         </h2>
         <p className="hidden max-w-lg text-sm leading-7 text-[var(--on-brand-soft)] sm:block">

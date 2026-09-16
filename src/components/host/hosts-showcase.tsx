@@ -34,7 +34,7 @@ const HOST_LIFT: Record<string, string> = {
  */
 export function HostsShowcase() {
   return (
-    <section className="section relative overflow-hidden">
+    <section className="section pt-0 relative overflow-hidden">
       <div
         className="pointer-events-none absolute inset-0 -z-10"
         style={{
@@ -44,12 +44,15 @@ export function HostsShowcase() {
         aria-hidden="true"
       />
 
-      <div className="container relative">
+      <div className="container relative pt-10">
         <Reveal className="mx-auto max-w-xl text-center">
           <span className="home-eyebrow">أصوات وعي</span>
-          <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">المقدّمون خلف كل حلقة</h2>
+          <h2 className="mt-3 text-2xl font-black leading-[1.25] tracking-[-.02em] sm:text-3xl">
+            المقدّمون خلف كل حلقة
+          </h2>
           <p className="mt-3 leading-7 text-[var(--ink-soft)]">
-            ثلاثة أصوات يجمعهم فضول واحد نحو المعرفة، يقودون الحوار حلقة بعد حلقة.
+            ثلاثة أصوات يجمعهم فضول واحد نحو المعرفة، يقودون الحوار حلقة بعد
+            حلقة.
           </p>
         </Reveal>
 
@@ -69,7 +72,10 @@ export function HostsShowcase() {
                 )}
               >
                 <div
-                  className={cn("host-portrait", isCenter ? "host-portrait--lg" : "host-portrait--sm")}
+                  className={cn(
+                    "host-portrait",
+                    isCenter ? "host-portrait--lg" : "host-portrait--sm",
+                  )}
                   style={{ "--host-glow": HOST_GLOW[host.id] } as CSSProperties}
                 >
                   <span className="host-portrait__glow" aria-hidden="true" />
@@ -84,7 +90,9 @@ export function HostsShowcase() {
                   </div>
                 </div>
 
-                <p className="mt-5 text-xl font-black tracking-[-.02em]">{host.name}</p>
+                <p className="mt-5 text-xl font-black tracking-[-.02em]">
+                  {host.name}
+                </p>
                 <span
                   className="mt-2 h-[3px] w-10 rounded-full"
                   style={{ backgroundColor: HOST_GLOW[host.id] }}

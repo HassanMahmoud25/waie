@@ -13,7 +13,7 @@ export default async function LibraryPage() {
   return (
     <main className="container py-14">
       <p className="eyebrow-pill w-fit">مساحتك الخاصة</p>
-      <h1 className="mt-4 text-4xl font-black tracking-[-.04em] md:text-6xl">
+      <h1 className="mt-4 text-2xl font-black leading-[1.8] tracking-[-.03em] md:text-3xl">
         مكتبتي
       </h1>
       <p className="mt-4 max-w-xl text-lg leading-8 text-[var(--ink-soft)]">

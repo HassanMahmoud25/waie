@@ -13,7 +13,7 @@ import { Reveal } from "@/components/shared/reveal";
  */
 export function WaieConnection() {
   return (
-    <section className="section">
+    <section className="section pt-0">
       <div className="container">
         <Reveal className="waie-connection px-6 py-16 text-center sm:px-14 sm:py-20">
           <span className="waie-connection__glow" aria-hidden="true" />
@@ -32,7 +32,7 @@ export function WaieConnection() {
             ))}
           </div>
 
-          <h2 className="mx-auto mt-9 max-w-2xl text-2xl font-black leading-snug tracking-[-.02em] text-white sm:text-4xl">
+          <h2 className="mx-auto mt-9 max-w-2xl text-xl font-black leading-snug tracking-[-.02em] text-white sm:text-3xl">
             ثلاثة صنّاع محتوى، لكل منهم قناته ورحلته — يجتمعون أسبوعيًا خلف ميكروفون واحد باسم وعي.
           </h2>
           <p className="mx-auto mt-5 max-w-xl text-[.95rem] leading-8 text-[var(--on-brand-soft)]">

@@ -34,7 +34,7 @@ export default function HostsPage() {
         <div className="container">
           <Reveal className="mx-auto max-w-xl text-center">
             <span className="home-eyebrow">قابل المقدّمون</span>
-            <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">من هم خلف الميكروفون</h2>
+            <h2 className="mt-3 text-2xl font-black leading-[1.25] tracking-[-.02em] sm:text-3xl">من هم خلف الميكروفون</h2>
             <p className="mt-3 leading-7 text-[var(--ink-soft)]">
               لكل واحد منهم قناته الخاصة وجمهوره الذي بناه على مدى سنوات، قبل أن يجتمعوا معًا في وعي.
             </p>
@@ -60,11 +60,11 @@ export default function HostsPage() {
         </div>
       </section>
 
-      <section className="section section-tint">
+      <section className="section section-tint pt-0">
         <div className="container">
           <Reveal className="mx-auto max-w-xl text-center">
             <span className="home-eyebrow">محتواهم الشخصي</span>
-            <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">ماذا يصنعون على قنواتهم</h2>
+            <h2 className="mt-3 text-2xl font-black leading-[1.25] tracking-[-.02em] sm:text-3xl">ماذا يصنعون على قنواتهم</h2>
             <p className="mt-3 leading-7 text-[var(--ink-soft)]">
               محتوى حقيقي من قنوات المقدّمون الثلاثة — ليس من حلقات وعي، بل مما يصنعونه بشكل مستقل.
             </p>

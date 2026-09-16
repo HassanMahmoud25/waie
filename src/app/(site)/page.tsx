@@ -5,6 +5,7 @@ import { contentRepository } from "@/lib/repositories";
 import { ContentRail } from "@/components/content/content-rail";
 import { CollectionCard } from "@/components/content/collection-card";
 import { SiteHero, type HeroStatKey } from "@/components/home/site-hero";
+import { ContinueWatchingSection } from "@/components/home/continue-watching-section";
 import { EpisodeCard } from "@/components/episode/episode-card";
 import { Banner } from "@/components/shared/banner";
 import { Reveal } from "@/components/shared/reveal";
@@ -54,7 +55,7 @@ export default async function Home() {
     }),
   );
 
-  const heroStats: 
+  const heroStats:
     | { key: HeroStatKey; value: string; label: string }[]
     | undefined =
     allEpisodes.length > 0
@@ -69,6 +70,8 @@ export default async function Home() {
     <main>
       <SiteHero stats={heroStats} latestEpisode={latest[0] ?? null} />
 
+      <ContinueWatchingSection episodes={allEpisodes} series={series} />
+
       {bentoSeries.length > 0 && (
         <section className="section">
           <div className="container">
@@ -76,7 +79,7 @@ export default async function Home() {
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <span className="home-eyebrow">سلاسل وعي</span>
-                  <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">
+                  <h2 className="mt-3 text-xl font-black leading-[1.25] tracking-[-.02em] sm:text-2xl">
                     استكشف حسب السلسلة
                   </h2>
                 </div>
@@ -84,7 +87,7 @@ export default async function Home() {
                   كل السلاسل <ArrowLeft size={15} />
                 </Link>
               </div>
-              
+
               <div className="mt-6 flex flex-col gap-5 md:hidden">
                 {bentoSeries[0] && (
                   <Banner
@@ -134,6 +137,7 @@ export default async function Home() {
                       meta={`${s.episodeCount} حلقة`}
                       ctaLabel="استكشف السلسلة"
                       size={isFirst ? "feature" : "compact"}
+                      stretch={index === 1}
                       sizes={
                         isFirst
                           ? "(max-width: 860px) 100vw, 66vw"
@@ -156,7 +160,7 @@ export default async function Home() {
               <div className="flex flex-wrap items-end justify-between gap-4">
                 <div>
                   <span className="home-eyebrow">وصل حديثًا</span>
-                  <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">
+                  <h2 className="mt-3 text-xl font-black leading-[1.25] tracking-[-.02em] sm:text-2xl">
                     أحدث الحلقات
                   </h2>
                 </div>
@@ -181,11 +185,11 @@ export default async function Home() {
       )}
 
       {popular.length > 0 && (
-        <section className="section section-tint">
+        <section className="section section-tint pt-0">
           <div className="container">
             <Reveal>
               <span className="home-eyebrow">الأكثر تفاعلًا</span>
-              <h2 className="mt-3 text-3xl font-black tracking-[-.03em] sm:text-4xl">
+              <h2 className="mt-3 text-xl font-black leading-[1.25] tracking-[-.02em] sm:text-2xl">
                 الأكثر استماعًا
               </h2>
               <ContentRail className="rail--wide mt-8">
@@ -210,7 +214,7 @@ export default async function Home() {
           <div className="container">
             <Reveal>
               <span className="home-eyebrow">المزيد من وعي</span>
-              <h2 className="mt-3 max-w-xl text-3xl font-black tracking-[-.03em] sm:text-4xl">
+              <h2 className="mt-3 max-w-xl text-2xl font-black leading-[1.25] tracking-[-.02em] sm:text-3xl">
                 استمر في رحلة الاستكشاف
               </h2>
             </Reveal>

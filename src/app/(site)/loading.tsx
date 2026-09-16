@@ -14,7 +14,7 @@ export default function HomeLoading() {
           </div>
         </div>
       </section>
-      <section className="section section-tint">
+      <section className="section section-tint pt-0">
         <div className="container">
           <EpisodeCardGridSkeleton count={2} />
         </div>

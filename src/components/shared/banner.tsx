@@ -15,6 +15,14 @@ type BannerProps = {
   /** "feature" = tall, full-bleed editorial banner (series/collection showcase). "compact" = grid tile. */
   size?: "feature" | "compact";
   /**
+   * Fill the parent grid area's height instead of the size's own aspect
+   * ratio — for a compact tile sharing a row with a taller feature banner,
+   * where the row is auto-sized to the feature and the compact tile would
+   * otherwise stop short at its own aspect ratio, leaving blank grid space
+   * beneath it.
+   */
+  stretch?: boolean;
+  /**
    * "container" aligns the text block to the page's .container gutter while
    * the image itself bleeds edge-to-edge — used when the banner is rendered
    * full-viewport-width outside any container (the homepage's dark feature
@@ -43,6 +51,7 @@ export function Banner({
   meta,
   ctaLabel = "استكشف",
   size = "compact",
+  stretch = false,
   align = "block",
   priority = false,
   sizes = "100vw",
@@ -95,7 +104,11 @@ export function Banner({
       href={href}
       className={cn(
         "hover-zoom group relative block overflow-hidden",
-        isFeature ? "aspect-[4/5] sm:aspect-[16/8] md:aspect-[21/9]" : "aspect-[4/3] sm:aspect-[16/10]",
+        stretch
+          ? "h-full"
+          : isFeature
+            ? "aspect-video sm:aspect-[16/8] md:aspect-[21/9]"
+            : "aspect-[4/3] sm:aspect-[16/10]",
         align === "block" && "rounded-[var(--radius-banner)]",
         className,
       )}

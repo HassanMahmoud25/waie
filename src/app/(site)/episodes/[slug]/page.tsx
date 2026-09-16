@@ -172,7 +172,7 @@ export default async function EpisodePage({
                     series={series}
                     className="eyebrow"
                   />
-                  <h1 className="mt-3 max-w-7xl text-3xl font-black leading-[1.4] tracking-[-.05em] md:text-4xl">
+                  <h1 className="mt-3 max-w-7xl text-xl font-black leading-[1.8] tracking-[-.05em] md:text-2xl">
                     {episode.title}
                   </h1>
                   <EpisodeMeta episode={episode} className="meta mt-5" />
@@ -201,6 +201,8 @@ export default async function EpisodePage({
                 <MediaPlayer
                   videoId={episode.youtubeVideoId}
                   title={episode.title}
+                  episodeId={episode.id}
+                  durationSeconds={episode.durationSeconds}
                 />
               </div>
             </div>
@@ -247,10 +249,10 @@ export default async function EpisodePage({
             </div>
           </section>
 
-          <section className="section-tint py-14 md:py-20">
+          <section className="section-tint pb-14 md:pb-20">
             <div className="container">
               <p className="eyebrow-pill w-fit">الحلقة في ثلاث طبقات</p>
-              <h2 className="mt-3 text-3xl font-black tracking-[-.04em] md:text-4xl">
+              <h2 className="mt-3 text-xl font-black leading-[1.8] tracking-[-.03em] md:text-2xl">
                 أكمل تجربة الحلقة
               </h2>
               <div className="mt-8">
@@ -265,10 +267,10 @@ export default async function EpisodePage({
         </EpisodePlayerProvider>
 
         {related.length > 0 && (
-          <section className="section">
+          <section className="section pt-0">
             <div className="container">
               <p className="eyebrow-pill w-fit">استكشف أكثر</p>
-              <h2 className="mt-3 text-3xl font-black tracking-[-.04em] md:text-4xl">
+              <h2 className="mt-3 text-xl font-black leading-[1.8] tracking-[-.03em] md:text-2xl">
                 حلقات قد تهمك
               </h2>
               <div className="mt-8">

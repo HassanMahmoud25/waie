@@ -19,7 +19,7 @@ export default async function CollectionsPage() {
   return (
     <main className="container py-12 md:py-16">
       <p className="eyebrow-pill w-fit">اختيارات منظمة</p>
-      <h1 className="mt-4 text-4xl font-black tracking-[-.04em] md:text-6xl">المختارات</h1>
+      <h1 className="mt-4 text-3xl font-black leading-[1.2] tracking-[-.03em] md:text-5xl">المختارات</h1>
       <p className="mt-4 max-w-xl text-lg leading-8 text-(--ink-soft)">
         مجموعات تحريرية منظمة حول فكرة واحدة، تختصر عليك رحلة البحث.
       </p>

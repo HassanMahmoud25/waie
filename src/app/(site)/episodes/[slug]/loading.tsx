@@ -40,7 +40,7 @@ export default function EpisodeLoading() {
         </div>
       </section>
 
-      <section className="section-tint py-14 md:py-20">
+      <section className="section-tint pb-14 md:pb-20">
         <div className="container">
           <Skeleton className="h-3 w-24" />
           <Skeleton className="mt-3 h-8 w-56" />

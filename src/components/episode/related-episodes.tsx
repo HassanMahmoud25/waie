@@ -15,19 +15,23 @@ export function RelatedEpisodes({
   const [prominent, ...supporting] = episodes;
 
   return (
-    <div className="grid gap-8 lg:grid-cols-[1.1fr_.9fr]">
+    <div className="grid items-start gap-8 lg:grid-cols-[1.1fr_.9fr]">
       <EpisodeCard
         episode={prominent}
         series={seriesById.get(prominent.seriesId) ?? null}
       />
       {supporting.length > 0 && (
-        <div className="flex flex-col gap-0">
+        <div className="flex flex-col">
           {supporting.map((episode) => (
-            <HorizontalEpisodeCard
-              episode={episode}
-              series={seriesById.get(episode.seriesId) ?? null}
+            <div
+              className="border-b border-[var(--line-soft)] py-5 first:pt-0 last:border-0 last:pb-0"
               key={episode.id}
-            />
+            >
+              <HorizontalEpisodeCard
+                episode={episode}
+                series={seriesById.get(episode.seriesId) ?? null}
+              />
+            </div>
           ))}
         </div>
       )}

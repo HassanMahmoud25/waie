@@ -65,7 +65,7 @@ export default async function SeriesDetailPage({ params }: { params: Promise<{ s
             />
           </div>
           <p className="eyebrow-pill eyebrow-pill--on-dark mt-6 w-fit">سلسلة وعي</p>
-          <h1 className="mt-4 max-w-2xl text-3xl font-black tracking-[-.03em] sm:text-4xl md:text-6xl">{series.title}</h1>
+          <h1 className="mt-4 max-w-2xl text-2xl font-black leading-[1.2] tracking-[-.03em] sm:text-3xl md:text-5xl">{series.title}</h1>
           <p className="mt-4 max-w-2xl text-base leading-8 text-[var(--on-brand-soft)] md:text-lg">{series.description}</p>
           <p className="glass-dark mt-6 w-fit rounded-[var(--radius-pill)] px-4 py-2 text-sm font-bold text-[var(--on-brand-soft)]">
             {series.episodeCount} حلقة · ابدأ من البداية أو أكمل من حيث توقفت

@@ -18,7 +18,7 @@ export function HorizontalEpisodeCard({
   series?: Series | null;
 }) {
   return (
-    <article className="hover-zoom grid h-full min-w-0 grid-cols-[42%_minmax(0,1fr)] gap-4 items-start">
+    <article className="hover-zoom grid min-w-0 grid-cols-[42%_minmax(0,1fr)] gap-4 items-start">
       <Link
         href={`/episodes/${episode.slug}`}
         className="media relative aspect-video min-w-0 self-start overflow-hidden"

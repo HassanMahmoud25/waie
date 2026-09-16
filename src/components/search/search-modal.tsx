@@ -4,7 +4,7 @@ import { useEffect, useRef, useState, useTransition } from "react";
 import { createPortal } from "react-dom";
 import Image from "next/image";
 import Link from "next/link";
-import { Play, Search, X } from "lucide-react";
+import { ArrowLeft, Play, Search, SearchX, X } from "lucide-react";
 import type { Episode } from "@/types/episode";
 import type { SearchResults } from "@/types/search";
 import type { Topic } from "@/types/topic";
@@ -123,7 +123,9 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
         className="search-modal-panel glass-strong relative z-10 h-fit max-h-[76vh] w-full max-w-2xl overflow-hidden rounded-[28px] shadow-[var(--shadow-lg)]"
       >
         <div className="flex items-center gap-3 border-b border-white/50 px-5 py-4 sm:px-6">
-          <Search size={20} className="shrink-0 text-[var(--ink-soft)]" aria-hidden="true" />
+          <span className="grid size-9 shrink-0 place-items-center rounded-full bg-black/5 text-[var(--ink-soft)]">
+            <Search size={17} aria-hidden="true" />
+          </span>
           <input
             ref={inputRef}
             value={query}
@@ -145,13 +147,15 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
           </button>
         </div>
 
-        <div className="max-h-[calc(76vh-73px)] overflow-y-auto p-3 sm:p-4">
+        <div className="max-h-[calc(76vh-73px)] overflow-y-auto p-4 sm:p-5">
           {!trimmed && (
-            <div className="px-2 py-2">
-              <p className="mb-3 text-xs font-bold text-[var(--muted)]">ابدأ من هذه الموضوعات</p>
+            <div className="px-1 py-1">
+              <p className="mb-3.5 text-xs font-black tracking-[.02em] text-[var(--muted)]">
+                ابدأ من هذه الموضوعات
+              </p>
               <div className="flex flex-wrap gap-2">
                 {(topics ?? []).map((topic) => (
-                  <Link key={topic.id} href={`/topics/${topic.slug}`} className="chip">
+                  <Link key={topic.id} href={`/topics/${topic.slug}`} onClick={onClose} className="chip">
                     <i className="size-2 shrink-0 rounded-full" style={{ backgroundColor: topic.color }} aria-hidden="true" />
                     {topic.title}
                   </Link>
@@ -162,33 +166,38 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
           )}
 
           {trimmed && isPending && !results && (
-            <div className="py-14 text-center text-sm font-bold text-[var(--muted)]">جارٍ البحث…</div>
+            <div className="py-16 text-center text-sm font-bold text-[var(--muted)]">جارٍ البحث…</div>
           )}
 
           {trimmed && results && totalResults === 0 && (
-            <div className="empty-state">
-              <p className="font-bold text-[var(--ink)]">لم نجد نتائج مطابقة لـ«{trimmed}»</p>
+            <div className="empty-state !shadow-none">
+              <SearchX className="mx-auto mb-3 text-[var(--muted)]" size={26} aria-hidden="true" />
+              <p className="font-bold text-[var(--ink)]">
+                لم نجد نتائج مطابقة لـ«<span className="text-[var(--accent-strong)]">{trimmed}</span>»
+              </p>
               <p className="mt-1 text-sm">جرّب كلمة أبسط، أو تصفّح الموضوعات أعلاه.</p>
             </div>
           )}
 
           {trimmed && results && totalResults > 0 && (
-            <div className="flex flex-col gap-2">
+            <div className="flex flex-col gap-4">
               {(results.series.length > 0 || results.topics.length > 0) && (
                 <div className="flex flex-col gap-1.5">
+                  <p className="px-1 text-xs font-black tracking-[.02em] text-[var(--muted)]">السلاسل والمواضيع</p>
                   {results.series.map((item) => (
-                    <SearchResultRow item={item} kind="series" key={item.id} />
+                    <SearchResultRow item={item} kind="series" onClick={onClose} key={item.id} />
                   ))}
                   {results.topics.map((item) => (
-                    <SearchResultRow item={item} kind="topic" key={item.id} />
+                    <SearchResultRow item={item} kind="topic" onClick={onClose} key={item.id} />
                   ))}
                 </div>
               )}
 
               {results.episodes.length > 0 && (
                 <div className="flex flex-col gap-1.5">
+                  <p className="px-1 text-xs font-black tracking-[.02em] text-[var(--muted)]">الحلقات</p>
                   {results.episodes.slice(0, 8).map((episode) => (
-                    <EpisodeResultRow episode={episode} key={episode.id} />
+                    <EpisodeResultRow episode={episode} onClick={onClose} key={episode.id} />
                   ))}
                 </div>
               )}
@@ -197,9 +206,12 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
         </div>
 
         {trimmed && (
-          <div className="border-t border-white/50 px-5 py-3 sm:px-6">
-            <Link href={`/search?q=${encodeURIComponent(trimmed)}`} className="section-link">
-              عرض كل النتائج في صفحة البحث
+          <div className="flex items-center justify-between gap-3 border-t border-white/50 px-5 py-3.5 sm:px-6">
+            <span className="text-xs font-bold text-[var(--muted)]">
+              {results && totalResults > 0 ? `${totalResults} نتيجة` : ""}
+            </span>
+            <Link href={`/search?q=${encodeURIComponent(trimmed)}`} onClick={onClose} className="section-link">
+              عرض كل النتائج في صفحة البحث <ArrowLeft size={14} aria-hidden="true" />
             </Link>
           </div>
         )}
@@ -209,9 +221,13 @@ export function SearchModal({ open, onClose }: { open: boolean; onClose: () => v
   );
 }
 
-function EpisodeResultRow({ episode }: { episode: Episode }) {
+function EpisodeResultRow({ episode, onClick }: { episode: Episode; onClick?: () => void }) {
   return (
-    <Link href={`/episodes/${episode.slug}`} className="glass-panel hover-zoom flex items-center gap-3 p-2.5">
+    <Link
+      href={`/episodes/${episode.slug}`}
+      onClick={onClick}
+      className="glass-panel hover-zoom flex items-center gap-3 p-2.5"
+    >
       <div className="media relative aspect-video w-24 shrink-0 overflow-hidden sm:w-28">
         <Image src={episode.thumbnailUrl} alt="" fill sizes="112px" className="object-cover" />
         <span className="play-mark">

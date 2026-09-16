@@ -81,7 +81,7 @@ export function SiteHero({
         </p>
 
         <h1
-          className="hero-title hero-in mt-4 max-w-2xl text-balance text-3xl font-black leading-[1.2] tracking-[-.02em] sm:text-5xl sm:leading-[1.15] sm:tracking-[-.03em] md:text-6xl"
+          className="hero-title hero-in mt-4 max-w-2xl text-balance text-3xl font-black leading-[1.3] tracking-[-.02em] sm:text-4xl sm:leading-[1.25] sm:tracking-[-.03em] md:text-5xl"
           style={{ "--hero-delay": "0.16s" } as CSSProperties}
         >
           {siteConfig.tagline}

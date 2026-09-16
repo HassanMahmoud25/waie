@@ -4,15 +4,11 @@ import { Play } from "lucide-react";
 import type { Episode } from "@/types/episode";
 import type { Series } from "@/types/series";
 import { formatDuration } from "@/lib/utils/format";
-import { resolveEpisodeHosts } from "@/lib/utils/content";
-import { HostAvatars } from "@/components/host/host-avatars";
 import { EpisodeIdentity } from "./episode-identity";
 import { EpisodeMeta } from "./episode-meta";
 
 /** Standard card: the default grid item for rails, topic pages, series grids and related-episode lists. */
 export function EpisodeCard({ episode, series }: { episode: Episode; series?: Series | null }) {
-  const episodeHosts = resolveEpisodeHosts(episode);
-
   return (
     <article className="hover-zoom min-w-0">
       <Link
@@ -32,13 +28,6 @@ export function EpisodeCard({ episode, series }: { episode: Episode; series?: Se
         <span className="glass-dark absolute bottom-3 left-3 z-10 rounded-[var(--radius-pill)] px-2.5 py-1 text-[.68rem] font-bold text-white">
           {formatDuration(episode.durationSeconds)}
         </span>
-        <HostAvatars
-          hosts={episodeHosts}
-          size="xs"
-          ringColor="var(--cinematic)"
-          tooltipSide="bottom"
-          className="absolute right-3 top-3 z-10"
-        />
       </Link>
 
       <div className="min-w-0 pt-4">

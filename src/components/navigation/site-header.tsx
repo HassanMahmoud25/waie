@@ -13,6 +13,7 @@ import { SearchModal } from "@/components/search/search-modal";
 import { MobileTabBar } from "@/components/navigation/mobile-tab-bar";
 
 const SCROLL_THRESHOLD = 12;
+const MENU_TRANSITION_MS = 180;
 
 export function SiteHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -101,7 +102,20 @@ function HeaderAuth({
   logout: () => void;
 }) {
   const [isOpen, setIsOpen] = useState(false);
+  // Keeps the menu in the DOM for the closing animation; the CSS drives the
+  // open/close animation itself off the `data-state` attribute (see the
+  // `.user-menu` keyframes in globals.css).
+  const [shouldRender, setShouldRender] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (isOpen) {
+      setShouldRender(true);
+      return;
+    }
+    const timeout = setTimeout(() => setShouldRender(false), MENU_TRANSITION_MS);
+    return () => clearTimeout(timeout);
+  }, [isOpen]);
 
   useEffect(() => {
     if (!isOpen) return;
@@ -145,8 +159,8 @@ function HeaderAuth({
         {initial}
       </button>
 
-      {isOpen && (
-        <div role="menu" className="user-menu glass-strong">
+      {shouldRender && (
+        <div role="menu" data-state={isOpen ? "open" : "closed"} className="user-menu glass-strong">
           <div className="border-b border-[var(--line-soft)] px-3 py-2.5">
             <p className="truncate text-sm font-black">{user.name}</p>
             <p className="truncate text-xs font-semibold text-[var(--muted)]">{user.email}</p>

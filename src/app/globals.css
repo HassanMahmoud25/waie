@@ -248,9 +248,7 @@
     }
 
     .hover-zoom .media {
-      transition:
-        transform 0.15s ease,
-        box-shadow 0.25s ease;
+      transition: transform 0.15s ease;
     }
 
     .mobile-tab-bar__icon {
@@ -304,6 +302,18 @@
     );
   }
 
+  /* Two full-padding sections back to back would double their gap (the
+     first one's bottom padding plus the second one's top padding) -- every
+     section after the first already gets a manual `pt-0` for this, except
+     where a section's presence is data-dependent (e.g. the continue-watching
+     rail, which only renders once a session has real local watch progress)
+     and no fixed class list can predict what actually ends up adjacent. A
+     sibling combinator collapses it automatically regardless of which
+     sections happen to render. */
+  .section + .section {
+    padding-top: 0;
+  }
+
   .section-heading {
     display: flex;
     justify-content: space-between;
@@ -314,9 +324,9 @@
 
   .section-heading h2 {
     margin: 0.4rem 0 0;
-    font-size: clamp(1.6rem, 3.2vw, 2.3rem);
-    letter-spacing: -0.03em;
-    line-height: 1.15;
+    font-size: clamp(1.4rem, 2.8vw, 2rem);
+    letter-spacing: -0.02em;
+    line-height: 1.25;
     font-weight: 800;
   }
 
@@ -439,7 +449,7 @@
      ========================================================================== */
   .eyebrow {
     color: var(--accent-strong);
-    font-size: 0.72rem;
+    font-size: 0.85rem;
     font-weight: 800;
     letter-spacing: 0.09em;
   }
@@ -523,6 +533,19 @@
   .btn-primary:hover {
     box-shadow: 0 18px 36px -12px
       color-mix(in srgb, var(--brand) 70%, transparent);
+  }
+
+  /* Ink-black CTA — used where a gradient-green .btn-primary would compete
+     with a nearby brand-green surface (e.g. the hero search bar sitting next
+     to a green submit button read as "two brands"). */
+  .btn-ink {
+    color: var(--on-brand);
+    background: linear-gradient(135deg, #232323 0%, #000000 100%);
+    box-shadow: 0 12px 28px -12px rgba(0, 0, 0, 0.45);
+  }
+
+  .btn-ink:hover {
+    box-shadow: 0 18px 36px -12px rgba(0, 0, 0, 0.5);
   }
 
   .btn-secondary {
@@ -681,6 +704,23 @@
     font-size: 0.8rem;
   }
 
+  /* Keyframe (not transition) so it always plays from the moment the
+     `data-state="open"` element mounts, regardless of JS/rAF frame timing --
+     same reasoning as the search modal below. */
+  @keyframes user-menu-in {
+    from {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+    }
+  }
+
+  @keyframes user-menu-out {
+    to {
+      opacity: 0;
+      transform: translateY(-6px) scale(0.96);
+    }
+  }
+
   .user-menu {
     position: absolute;
     inset-inline-end: 0;
@@ -689,6 +729,12 @@
     width: 230px;
     padding: 0.5rem;
     border-radius: 18px;
+    transform-origin: top;
+    animation: user-menu-in 0.18s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
+  .user-menu[data-state="closed"] {
+    animation-name: user-menu-out;
   }
 
   .user-menu__item {
@@ -849,10 +895,6 @@
     transition: filter 0.3s ease;
   }
 
-  .hover-zoom:hover .media {
-    box-shadow: var(--shadow-lg);
-  }
-
   /* Small, always-on tint so white play icons / duration chips stay legible on
      any thumbnail, regardless of hover state. */
   .media::after {
@@ -982,15 +1024,59 @@
   }
 
   /* ==========================================================================
-     The journey route — one continuous dotted line connecting a "start of
-     series" pin to an "end of series" pin, threading through every episode
-     along the way (see SeriesEpisodeList, which computes the single <path>
-     below from each thumbnail's real on-screen position). The line sits
-     *behind* every thumbnail (painted before `.journey-list` in the DOM, so
-     `.media`'s own opaque photo naturally covers it) and only reads as
-     visible in the plain whitespace between rows and around the pins --
-     like a map route disappearing under a landmark icon and re-emerging on
-     the other side. Purely decorative (aria-hidden), no per-episode nodes.
+     Continue-watching tile (components/home/continue-watching-card.tsx) — a
+     thin scrubber-style progress fill pinned to the thumbnail's bottom edge,
+     plus a small pill CTA under the title that reads as "resume", not "open".
+     ========================================================================== */
+  .continue-progress {
+    position: absolute;
+    inset-inline: 0;
+    bottom: 0;
+    z-index: 1;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.28);
+  }
+
+  .continue-progress__fill {
+    display: block;
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent-strong), var(--accent));
+    box-shadow: 0 0 10px 1px color-mix(in srgb, var(--accent) 70%, transparent);
+  }
+
+  .continue-cta {
+    margin-top: 0.85rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.55rem 1.05rem;
+    border-radius: var(--radius-pill);
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: var(--on-brand);
+    background: linear-gradient(135deg, var(--brand) 0%, var(--brand-deep) 100%);
+    transition:
+      gap 0.18s ease,
+      box-shadow 0.18s ease;
+  }
+
+  .continue-cta:hover {
+    gap: 0.6rem;
+  }
+
+  /* ==========================================================================
+     The journey route — one continuous line connecting a "start of series"
+     marker to an "end of series" marker, threading through every episode
+     along the way (see SeriesEpisodeList, which computes the guide <path>
+     below from each thumbnail's real on-screen position, then samples it to
+     place the small rectangular marks). The route sits *behind* every
+     thumbnail (painted before `.journey-list` in the DOM, so `.media`'s own
+     opaque photo naturally covers it) and only reads as visible in the plain
+     whitespace between rows -- like a map route disappearing under a
+     landmark icon and re-emerging on the other side. It's anchored to each
+     marker's own icon edge (not the label text), so it never runs near the
+     "start/end" wording. Purely decorative (aria-hidden), no per-episode
+     nodes.
      ========================================================================== */
   .journey {
     position: relative;
@@ -1006,12 +1092,23 @@
     pointer-events: none;
   }
 
-  .journey-route path {
+  /* Not rendered -- this path only exists so SeriesEpisodeList can sample
+     it (getTotalLength/getPointAtLength) to place the rectangle marks
+     below. The route reads purely through those marks, with no connecting
+     line beneath them. */
+  .journey-route__guide {
     fill: none;
-    stroke: color-mix(in srgb, var(--brand) 32%, var(--line));
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-dasharray: 0.1 12;
+    stroke: none;
+  }
+
+  /* Small waypoint rectangles sampled along the guide path and rotated to
+     its tangent, so the marks read as a directional flow toward the end
+     marker rather than a plain dotted line. Each is tinted along the same
+     gold-to-green gradient as the two markers (see the inline `fill`),
+     reinforcing the start -> end direction of travel. */
+  .journey-route__chevron {
+    stroke: none;
+    filter: drop-shadow(0 1.5px 2px rgba(18, 26, 24, 0.3));
   }
 
   .journey-pin {
@@ -1019,33 +1116,82 @@
     display: flex;
     width: fit-content;
     align-items: center;
-    gap: 0.65rem;
+    gap: 0.75rem;
     padding-inline-start: clamp(1.4rem, 6vw, 2.35rem);
-    margin-block: 1.1rem;
-    font-size: 0.78rem;
+    margin-block: 1.25rem;
     font-weight: 800;
     letter-spacing: 0.02em;
   }
 
-  /* Small map-marker badge -- a tinted, bordered circle around the pin icon
-     instead of a bare glyph, so the two ends of the route read as real
-     landmarks. Tints itself from `color` via currentColor, so the start/end
-     variants below don't need their own background rules. */
+  .journey-pin__label {
+    font-size: 1rem;
+  }
+
+  /* A short line trailing off the label, away from the icon -- a small
+     wayfinding flourish (like a section rule) rather than a bare word
+     floating beside the marker. Fades toward its far end so it reads as a
+     flourish, not a hard-edged divider. */
+  .journey-pin__rule {
+    display: inline-block;
+    width: clamp(3rem, 10vw, 6.5rem);
+    height: 2px;
+    border-radius: 1px;
+    background: linear-gradient(to left, currentColor, transparent);
+    opacity: 0.55;
+  }
+
+  /* Small waypoint badge -- a tinted, bordered circle around the marker
+     icon, with a soft symmetric halo ring, so the two ends of the route
+     read as real landmarks rather than bare glyphs. Tints itself from
+     `color` via currentColor, so the start/end variants below don't need
+     their own background rules. */
   .journey-pin__icon {
+    position: relative;
     display: grid;
     flex-shrink: 0;
     place-items: center;
-    width: 1.9rem;
-    height: 1.9rem;
+    width: 2.1rem;
+    height: 2.1rem;
     border-radius: 50%;
-    background: color-mix(in srgb, currentColor 16%, var(--paper));
-    border: 1px solid color-mix(in srgb, currentColor 32%, transparent);
-    box-shadow: var(--shadow-xs);
+    background: color-mix(in srgb, currentColor 18%, var(--paper));
+    border: 1.5px solid color-mix(in srgb, currentColor 40%, transparent);
+    box-shadow:
+      0 0 0 4px color-mix(in srgb, currentColor 10%, transparent),
+      var(--shadow-xs);
   }
 
   .journey-pin--start {
     margin-top: 0.15rem;
     color: var(--accent-strong);
+  }
+
+  /* A soft radiating pulse behind both markers' badges -- like a "live"
+     map marker -- so the two ends of the journey read as points on an
+     active route rather than static bullets. Animates transform + opacity
+     (not box-shadow) so the browser can run it on the compositor instead
+     of repainting every frame, with a single easing curve across the
+     *whole* duration (no flat hold partway through) so the ripple reads as
+     one continuous motion rather than a pulse-then-pause. */
+  .journey-pin__icon::before {
+    content: "";
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    background: color-mix(in srgb, currentColor 40%, transparent);
+    animation: journey-pulse-ring 2.4s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+    pointer-events: none;
+    z-index: -1;
+  }
+
+  @keyframes journey-pulse-ring {
+    from {
+      transform: scale(0.85);
+      opacity: 0.5;
+    }
+    to {
+      transform: scale(2);
+      opacity: 0;
+    }
   }
 
   .journey-pin--end {
@@ -1425,6 +1571,18 @@
     animation-name: search-modal-panel-out;
   }
 
+  /* --- Route content cross-fade (components/shared/page-transition.tsx) --- */
+  @keyframes page-transition-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+  }
+
+  .page-transition {
+    animation: page-transition-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+  }
+
   /* --- Hero entrance (always visible on load -- pure CSS, no JS dependency,
      so disabling/blocking scripts never leaves the hero stuck invisible). ---- */
   @keyframes fade-rise-in {
@@ -1796,6 +1954,19 @@
     background: var(--glass-light-strong);
   }
 
+  /* Chip variant for related-series links on topic pages: a touch more
+     padding/weight than a plain metadata chip, since it's a real navigation
+     card (leading category icon + trailing directional arrow), not a tag. */
+  .chip--series {
+    gap: 0.55rem;
+    padding: 0.7rem 1.1rem 0.7rem 1rem;
+    font-size: 0.88rem;
+  }
+
+  a.chip--series:hover {
+    transform: translateY(-1px);
+  }
+
   /* ==========================================================================
      Auth pages (/login, /signup, /forgot-password) — a split glass card:
      a cinematic brand panel (reuses the hero photo + scrim language from the
@@ -1813,7 +1984,7 @@
 
   @media (max-width: 639px) {
     .auth-page {
-      padding: 1.5rem;
+      padding: 1rem;
       align-items: flex-start;
     }
   }

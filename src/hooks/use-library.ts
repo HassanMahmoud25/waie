@@ -8,6 +8,9 @@ type LibraryState = { savedEpisodeIds: string[]; progress: Record<string, Progre
 const STORAGE_KEY = "waie:library:v1";
 const emptyState: LibraryState = { savedEpisodeIds: [], progress: {} };
 
+/** Watching past this fraction of the episode counts as finished, same as most streaming apps -- the viewer shouldn't have to scrub to the exact last second for it to "count". */
+const COMPLETE_THRESHOLD = 0.95;
+
 function readState(): LibraryState {
   if (typeof window === "undefined") return emptyState;
   try {
@@ -59,6 +62,22 @@ export function useLibrary() {
 
   const getProgress = useCallback((episodeId: string) => state.progress[episodeId], [state]);
 
+  /** Called from the player as an episode plays. Once real playback crosses COMPLETE_THRESHOLD it's marked completed automatically, same as the manual "mark as watched" toggle would -- but never un-marks a completion the user (or a prior watch) already set. */
+  const setProgress = useCallback((episodeId: string, seconds: number, durationSeconds: number) => {
+    setState((prev) => {
+      const safeSeconds = Math.max(0, Math.round(seconds));
+      const wasCompleted = prev.progress[episodeId]?.completed ?? false;
+      const completed =
+        wasCompleted || (durationSeconds > 0 && safeSeconds / durationSeconds >= COMPLETE_THRESHOLD);
+      const next: LibraryState = {
+        ...prev,
+        progress: { ...prev.progress, [episodeId]: { seconds: safeSeconds, completed } },
+      };
+      writeState(next);
+      return next;
+    });
+  }, []);
+
   const toggleCompleted = useCallback((episodeId: string) => {
     setState((prev) => {
       const existing = prev.progress[episodeId];
@@ -81,6 +100,7 @@ export function useLibrary() {
     isSaved,
     toggleSaved,
     getProgress,
+    setProgress,
     toggleCompleted,
   };
 }

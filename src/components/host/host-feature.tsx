@@ -22,7 +22,7 @@ function HostFeatureBody({ host, profile, index }: Pick<HostFeatureProps, "host"
   return (
     <div className="host-feature__body min-w-0">
       <p className="eyebrow-pill w-fit">{ORDINALS[index] ?? "أحد أصوات وعي"}</p>
-      <h2 className="mt-4 text-3xl font-black tracking-[-.03em] sm:text-5xl">{host.name}</h2>
+      <h2 className="mt-4 text-2xl font-black leading-[1.25] tracking-[-.02em] sm:text-4xl">{host.name}</h2>
       <p className="mt-5 max-w-xl text-base leading-8 text-[var(--ink-soft)] sm:text-lg">{profile.bio}</p>
 
       <div className="mt-7 flex flex-col gap-3 sm:max-w-xl">

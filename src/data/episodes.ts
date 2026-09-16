@@ -21,6 +21,12 @@ const thumbnail = (videoId: string) => `https://i.ytimg.com/vi/${videoId}/maxres
  *   playlist intentionally have `seriesId: ""` / `topicIds: []` rather than
  *   being force-fit into a series that doesn't reflect the channel's own
  *   organization.
+ *
+ * A 6th series, "الموسم الأول" (`series-season-one`), was added later: its
+ * 22 episodes live on a different channel entirely (see the block comment
+ * right before them, below) so they're appended after the @Waie videos
+ * above rather than interleaved into the numbering/import-order those
+ * follow. That brings the file to 113 episodes across 6 series total.
  */
 export const episodes: Episode[] = [
   {
@@ -1386,6 +1392,741 @@ export const episodes: Episode[] = [
     status: "PUBLISHED",
     featured: false,
     seriesId: "",
+    topicIds: [],
+  },
+
+  /**
+   * "الموسم الأول" -- the show's original 22 uploads, imported from the
+   * "وعي" playlist on host Hazem El Seddiq's own YouTube channel
+   * (https://www.youtube.com/playlist?list=PLcaLjDlQePQU3dpVNUzTSQQapGgtxPtts),
+   * not the main @Waie channel: this is where the podcast lived before it
+   * got its own channel, which is why episodeNumber 1-21 don't otherwise
+   * exist in this file (ep-22 above is the oldest episode on @Waie itself).
+   * `seriesId: "series-season-one"` (see data/series.ts). `topicIds: []`
+   * for the same reason `topicId` on that series is `null` -- not inferred
+   * from the playlist. `hosts` intentionally left unset (falls back to the
+   * show's default lineup, same as every other imported episode) even
+   * though the descriptions below show the actual lineup varying between
+   * two and three hosts episode to episode -- consistent with how the rest
+   * of this import handles hosts (see data/hosts.ts).
+   */
+  {
+    id: "ep-21",
+    slug: "waie-21",
+    title: `وعي ٢١ | الأفلام والإباحية وأضرارها والحفاظ على النفس منها وعدم فقدان الأمل في التوبة والتعافي`,
+    description: `بودكاست وعي مع أحمد عامر، حازم الصديق وشريف علي.
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+أو من هنا: https://soundcloud.com/hazcast/waie21
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #Pornography`,
+    youtubeVideoId: "3-Caas1JElk",
+    thumbnailUrl: thumbnail("3-Caas1JElk"),
+    episodeNumber: 21,
+    durationSeconds: 4519,
+    publishedAt: new Date("2021-09-16T09:57:30-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-20",
+    slug: "waie-20",
+    title: `وعي ٢٠ | توعية عن الشهوة وأبعادها وضرورة فهم آثار الاستسلام لها على النفس والمجتمعات`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق وشريف علي.
+
+اسمع الحلقة من https://hazem.tv/waie20
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #الشهوة`,
+    youtubeVideoId: "9ReqYOhcpuc",
+    thumbnailUrl: thumbnail("9ReqYOhcpuc"),
+    episodeNumber: 20,
+    durationSeconds: 3832,
+    publishedAt: new Date("2021-09-02T11:19:10-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-19",
+    slug: "waie-19",
+    title: `وعي ١٩ | نقاش عن الأسباب الأشهر لترك الحجاب وكيفية التعامل معها وتذكرة بهدفنا كمسلمين في الحياة`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv/waie19
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #الحجاب`,
+    youtubeVideoId: "bbeA-UaElfw",
+    thumbnailUrl: thumbnail("bbeA-UaElfw"),
+    episodeNumber: 19,
+    durationSeconds: 5604,
+    publishedAt: new Date("2021-08-26T12:21:30-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-18",
+    slug: "waie-18",
+    title: `وعي ١٨ | الصلاة: فرضيتها وأهميتها وآثارها العملية والإيمانية وتذكرة للقلوب المقبلة`,
+    description: `وعي 18 مع شريف علي وحازم الصديق.
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv/waie18
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #الصلاة`,
+    youtubeVideoId: "ep3mrXELwuY",
+    thumbnailUrl: thumbnail("ep3mrXELwuY"),
+    episodeNumber: 18,
+    durationSeconds: 3310,
+    publishedAt: new Date("2021-08-19T08:06:13-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-pDqpbfkMi-k",
+    slug: "waie-pDqpbfkMi-k",
+    title: `الصلاة بتفرق في حياتنا العملية بجد ولا هي مجرد طقوس روحانية؟`,
+    description: `شوف الحلقة كاملة من هنا: 
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv/waie18
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #الصلاة`,
+    youtubeVideoId: "pDqpbfkMi-k",
+    thumbnailUrl: thumbnail("pDqpbfkMi-k"),
+    episodeNumber: null,
+    durationSeconds: 260,
+    publishedAt: new Date("2021-08-19T05:32:56-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-17",
+    slug: "waie-17",
+    title: `وعي ١٧ | السوشيال ميديا وأضرارها وتأثيرها السلبي على حياتنا وديننا وكيف نتعامل معها`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بو
+اسمع الحلقة من 
+https://soundcloud.com/hazcast/waie17
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #SocialMedia`,
+    youtubeVideoId: "LA-Rfc3EWGU",
+    thumbnailUrl: thumbnail("LA-Rfc3EWGU"),
+    episodeNumber: 17,
+    durationSeconds: 5835,
+    publishedAt: new Date("2021-08-05T13:25:29-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-16",
+    slug: "waie-16",
+    title: `وعي ١٦ | عن حب سيدنا إبراهيم وأهمية يوم النحر ومفهوم التضحية والتسليم وتطبيقات عملية`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+وعي مع أحمد عامر وحازم الصديق وشريف علي.
+إحنا بنحب سيدنا إبراهيم جدًا. في البودكاست ده اتكلمنا عنه كتير وعن التضحيات اللي ضحاها عشان يبقى خليل الرحمن، وعن أثر سيدنا إبراهيم الباقي حتى الآن في الإسلام.
+
+اسمع الحلقة من https://hazem.tv/waie16
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #النحر`,
+    youtubeVideoId: "SK_fQrH49Z0",
+    thumbnailUrl: thumbnail("SK_fQrH49Z0"),
+    episodeNumber: 16,
+    durationSeconds: 3267,
+    publishedAt: new Date("2021-07-18T12:25:08-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-15",
+    slug: "waie-15",
+    title: `وعي ١٥ | أوائل ذي الحجة | أفضل أيام الدهروعظمة يوم عرفة وأفضل الأعمال فيها`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق وشريف علي. عن العشر الأوائل من ذي الحجة وحسن استقبالهم والتخطيط ليهم وأفضل الأعمال فيهم. وعن يوم عرفة وعظمته وحمات الله في ذلك اليوم.
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie15
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #عرفة`,
+    youtubeVideoId: "YgKfcLUbu60",
+    thumbnailUrl: thumbnail("YgKfcLUbu60"),
+    episodeNumber: 15,
+    durationSeconds: 4220,
+    publishedAt: new Date("2021-07-12T14:07:53-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-14",
+    slug: "waie-14",
+    title: `وعي ١٤ | إصابة أحمد عامر بالرباط الصليبي وخواطر حول التعامل مع الابتلاء وقراءة قدر الله ورسائله`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق.
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie14
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://kit.co/hzmsdq/youtube-and-podcast-gear
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #الابتلاء`,
+    youtubeVideoId: "Yu2MXe4EhDA",
+    thumbnailUrl: thumbnail("Yu2MXe4EhDA"),
+    episodeNumber: 14,
+    durationSeconds: 3614,
+    publishedAt: new Date("2021-07-01T10:40:29-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-13",
+    slug: "waie-13",
+    title: `وعي ١٣ | أهم خطوات للحفاظ على النفس وما بني في رمضان (طرق عملية)`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+خطوات عملية والأعمدة الرئيسية في الحفاظ على النفس بعد رمضان وعدم فقدان الأمل في ما بني في رمضان. مع أحمد عامر وحازم الصديق وشريف علي.
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie13
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+الحلقة برعاية
+
+التي-شرت اللي أنا لابسه من هنا: https://www.stabraq.com
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "rw7vweU9kJM",
+    thumbnailUrl: thumbnail("rw7vweU9kJM"),
+    episodeNumber: 13,
+    durationSeconds: 3693,
+    publishedAt: new Date("2021-06-24T17:16:23-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-12",
+    slug: "waie-12",
+    title: `وعي ١٢ | فهم القضية الفلسطينية من منطلق الدين وكيفية الخروج منها بتغيير حقيقي كي لا ننسى`,
+    description: `وعي مع أحمد عامر وحازم الصديق وشريف علي - فلسطين وكيف نبصر الأحداث بشكل صحيح، وكيف نخرج منها بخطة عملية كي لا ننسى.
+
+0:00 مقدمة.
+4:08 إحياء القضية في النفوس.
+7:20 الله يدبر لدينه. 
+11:43 ربط الأحداث برمضان، وعلاقتنا بالأحداث. 
+
+20:24 قضية فلسطين إنسانية، عربية ولا إسلامية؟
+25:26 القومية مش غلط لكن لا تكتفي بيها، المسلم أخو المسلم، التفاعل مع القضية عبادة. 
+31:51 الأمة قوية وتأثريها ضخم جدا.
+33:38 كل مسلم من حقه الدفاع عن القضية بل واجبه، ماتحجرش القضية على حد (الصحابي أبو محجن الثقفي رضي الله عنه).
+
+38:34 "رجال صدقوا ما عادوا الله عليه" كل واحد أدرك دوره، المهم نستمر مانهداش بهدوء التريند.
+
+43:30 من أعظم أسباب الهزيمة: ١.الذنوب والمعاصي (مثال غزوة أحد)
+٢.أن تظن ان النصر من عندك أو بقوتك أنت
+سنن الله في الدنيا لا تُخالف.
+
+50:58 مفهوم النصر (مثال الغلام وأصحاب الاخدود)
+
+55:12 نتفاعل ازاي مع فيديوهات ضحايا فلسطين. 
+
+1:00:31 نصائح مهمة ١. أقل أثر انني أفهم القضية اكتر فهي جزء من ديني "وما بدلوا تبديلا".
+1:03:25 ٢. الشباب تستغل همتها وطاقتها لخدمة القضية قدر المستطاع.
+1:06:06 ٣. القضية بتحفزنا لدورنا الأساسي في الدنيا "نعبد الله"، والمكسب أننا نموت على الإسلام.
+1:07:07 العبادة هي الإيجابية الحقيقية اللي ممكن تقدمها للقضية، أقلها أن تنوي وتحدث نفسك بالتغيير.
+1:12:56 العلاقة بالقرآن هي اللي تديم صحوتك.
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie12
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #فلسطين`,
+    youtubeVideoId: "ehL5UnNnoFU",
+    thumbnailUrl: thumbnail("ehL5UnNnoFU"),
+    episodeNumber: 12,
+    durationSeconds: 4523,
+    publishedAt: new Date("2021-05-23T11:13:47-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-11",
+    slug: "waie-11",
+    title: `وعي ١١ | الفتور في رمضان وحسن التعامل مع النفس وقيمة التفرغ للعبادة وطريقة دعاء الأنبياء`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق وشريف علي عن كيف كان يدعوا الأنبياء والفتور في رمضان وحسن التعامل مع النفس وقيمة التفرغ للعبادة.
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie11
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي #رمضان`,
+    youtubeVideoId: "fqL5bKCZlMw",
+    thumbnailUrl: thumbnail("fqL5bKCZlMw"),
+    episodeNumber: 11,
+    durationSeconds: 5009,
+    publishedAt: new Date("2021-04-22T13:17:04-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-10",
+    slug: "waie-10",
+    title: `وعي ١٠ | الاستعداد العملي لرمضان بخطة واقعية`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق عن الاستعداد لرمضان بخطة عملية.
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie10
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "qUtDdVuXayA",
+    thumbnailUrl: thumbnail("qUtDdVuXayA"),
+    episodeNumber: 10,
+    durationSeconds: 4314,
+    publishedAt: new Date("2021-04-11T08:35:53-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-9",
+    slug: "waie-9",
+    title: `وعي ٩ | ماذا يعني رمضان لنا وما الاستعداد الذهني والنفسي له`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع احمد عامر وحازم الصديق. كيفية الاستعداد الذهني والنفسي لرمضان وتحديات شخصية
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie9
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#HazCast #Podcast`,
+    youtubeVideoId: "OuyAO6Nz9v0",
+    thumbnailUrl: thumbnail("OuyAO6Nz9v0"),
+    episodeNumber: 9,
+    durationSeconds: 4126,
+    publishedAt: new Date("2021-04-10T07:37:12-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-8",
+    slug: "waie-8",
+    title: `وعي ٨ | معنى البر المفقود ومفهوم جديد لاستيعاب علاقتنا بأهلنا وطرق فعالة لنيل رضاهم`,
+    description: `الكلام اللي في الدقيقة 1:30 هو أثر عن ابن عباس وليس بحديث.
+
+بودكاست وعي مع أحمد عامر وحازم الصديق: 
+معنى البر المفقود ومفهوم جديد لاستيعاب علاقتنا بأهلنا وطرق فعالة لنيل رضاهم
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie8
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "D3gunb0UuVY",
+    thumbnailUrl: thumbnail("D3gunb0UuVY"),
+    episodeNumber: 8,
+    durationSeconds: 5395,
+    publishedAt: new Date("2021-03-29T05:34:49-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-7",
+    slug: "waie-7",
+    title: `وعي ٧ | أهمية طلب العلم الشرعي وأنواعه وهل هو ضرورة أم اختيار`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie7
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "mhQYHun5lh4",
+    thumbnailUrl: thumbnail("mhQYHun5lh4"),
+    episodeNumber: 7,
+    durationSeconds: 5033,
+    publishedAt: new Date("2021-03-22T07:40:50-07:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-6",
+    slug: "waie-6",
+    title: `وعي مع الجمهور ٦ | حقيقة الذنوب ولماذا نذنب وفهم النفس في التعامل مع الذنب`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+بودكاست وعي مع أحمد عامر وحازم الصديق
+
+تصوير ومونتاج: محمد قابيل
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie6
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#وعي #الذنوب`,
+    youtubeVideoId: "7AWgilk0YMM",
+    thumbnailUrl: thumbnail("7AWgilk0YMM"),
+    episodeNumber: 6,
+    durationSeconds: 4903,
+    publishedAt: new Date("2021-03-13T12:02:27-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-5",
+    slug: "waie-5",
+    title: `وعي ٥ | كلام عن العلم والعلماء ونسأل مين ونرجع لمين`,
+    description: `بودكاست وعي مع أحمد عامر وحازم الصديق
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie5
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "dkzOzXTQfHo",
+    thumbnailUrl: thumbnail("dkzOzXTQfHo"),
+    episodeNumber: 5,
+    durationSeconds: 3768,
+    publishedAt: new Date("2021-03-07T04:19:28-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-4",
+    slug: "waie-4",
+    title: `وعي ٤ | الصلاة وأهميتها وارتباطها الواقعي بحياتنا وكيفية المواظبة عليها`,
+    description: `بودكاست وعي مع أحمد عامر وحازم الصديق.
+
+أهمية الصلاة وارتباطها الواقعي بحياتنا وطرق فعالة تخليك تواظب على الصلاة، ومحاولة لفهم الصلاة من كذا بعد وتأثيرها الإيجابي والملموس علينا.
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+أو من هنا: https://soundcloud.com/hazcast/waie4
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "M6AIuNtxMrY",
+    thumbnailUrl: thumbnail("M6AIuNtxMrY"),
+    episodeNumber: 4,
+    durationSeconds: 4967,
+    publishedAt: new Date("2021-02-27T09:31:01-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-3",
+    slug: "waie-3",
+    title: `وعي ٣ | الانخراط في المجتمع مع الحفاظ على ديني + تأثير لبسنا علينا`,
+    description: `بودكاست وعي مع أحمد عامر وحازم الصديق
+
+ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast/waie3
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "6dUBniwpJRQ",
+    thumbnailUrl: thumbnail("6dUBniwpJRQ"),
+    episodeNumber: 3,
+    durationSeconds: 4678,
+    publishedAt: new Date("2021-02-23T11:55:36-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-2",
+    slug: "waie-2",
+    title: `وعي ٢ | تزكية النفس ومعناها ونعمها ازاي وأهميتها في تطهير القلوب والتغيير`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+في الحلقة دي اتكلمنا عن اهمية تزكية النفس.
+فكرة ان نفسي فيها مشاكل واننا بنكسل جدا نتغير في جانب الاخلاق وتطهير القلب.. دردشة من اول يعني ايه اصلا تزكية ونعملها ازاي وبرده عن ليه بنقصر فيه ومش شغالين عليه كفاية..
+
+اسمع الحلقة من https://hazem.tv
+أو من هنا: https://soundcloud.com/hazcast
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+الهودي اللي أنا لابسه من هنا: https://www.stabraq.com
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "0n_K3CpoizE",
+    thumbnailUrl: thumbnail("0n_K3CpoizE"),
+    episodeNumber: 2,
+    durationSeconds: 4418,
+    publishedAt: new Date("2021-02-13T07:00:44-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
+    topicIds: [],
+  },
+  {
+    id: "ep-1",
+    slug: "waie-1",
+    title: `وعي | بودكاست جديد مع أحمد عامر وحازم الصديق`,
+    description: `ادعم البودكاست من هنا: https://www.patreon.com/hzmsdq
+
+اسمع الحلقة من
+أو من هنا: https://soundcloud.com/hazcast/waie01
+أو من أي تطبيق بتاع بودكاست زي iTunes أو Google Podcasts أو CastBox
+
+الهودي اللي أنا لابسه من هنا: https://www.stabraq.com
+
+العدة اللي بستخدمها (لو اشتريت من اللينكات دي، باخد نسبة)
+https://www.amazon.com/shop/hazemelseddiq
+
+تابعني على سوشيال ميديا
+فيسبوك: https://www.facebook.com/hzmsdq
+إنستاجرام: https://www.instagram.com/alienbeard
+تويتر: https://www.twitter.com/hzmsdq
+
+للتواصل والإعلان: h@hazem.tv
+#Podcast #وعي`,
+    youtubeVideoId: "RhTxjl_W_BM",
+    thumbnailUrl: thumbnail("RhTxjl_W_BM"),
+    episodeNumber: 1,
+    durationSeconds: 4212,
+    publishedAt: new Date("2021-02-06T04:30:42-08:00"),
+    status: "PUBLISHED",
+    featured: false,
+    seriesId: "series-season-one",
     topicIds: [],
   },
 ];
