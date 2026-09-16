@@ -36,8 +36,8 @@ export function EpisodeListItem({
           {order}
         </span>
 
-        <div ref={mediaRef} className="media relative aspect-video w-32 shrink-0 overflow-hidden sm:w-40">
-          <Image src={episode.thumbnailUrl} alt="" fill sizes="160px" className="object-cover" />
+        <div ref={mediaRef} className="media relative aspect-video w-36 shrink-0 overflow-hidden sm:w-44">
+          <Image src={episode.thumbnailUrl} alt="" fill sizes="176px" className="object-cover" />
           <span className="play-mark">
             <Play size={13} fill="currentColor" />
           </span>

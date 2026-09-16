@@ -9,7 +9,7 @@ import { EpisodeListItem } from "@/components/episode/episode-list-item";
 /** How far each card's hidden pass-through drifts off its true center --
  *  alternating sides by index so consecutive gap curves swing opposite
  *  ways and read as one continuous wave. Safely inside even the smallest
- *  (mobile, 128px-wide) thumbnail, so the drift never peeks out from under
+ *  (mobile, 144px-wide) thumbnail, so the drift never peeks out from under
  *  the image. */
 const WAVE_OFFSET = 26;
 

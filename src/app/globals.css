@@ -1108,7 +1108,6 @@
      reinforcing the start -> end direction of travel. */
   .journey-route__chevron {
     stroke: none;
-    filter: drop-shadow(0 1.5px 2px rgba(18, 26, 24, 0.3));
   }
 
   .journey-pin {
@@ -1133,7 +1132,7 @@
      flourish, not a hard-edged divider. */
   .journey-pin__rule {
     display: inline-block;
-    width: clamp(3rem, 10vw, 6.5rem);
+    width: clamp(12rem, 10vw, 6.5rem);
     height: 2px;
     border-radius: 1px;
     background: linear-gradient(to left, currentColor, transparent);
